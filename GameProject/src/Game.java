@@ -18,6 +18,7 @@ public class Game extends Canvas implements KeyListener{
 	BufferedImage buffer; // Create the buffer
         Ball ball;
         Bat bat;
+        PC pc;
         boolean isLeft;
         boolean isRight;
         
@@ -28,9 +29,10 @@ public class Game extends Canvas implements KeyListener{
 		buffer = new BufferedImage(dim.width, dim.height,
 				BufferedImage.TYPE_INT_RGB);
 		this.setIgnoreRepaint(true); // Ignore repainting as we are doing all
-										// the drawing stuff
+		// the drawing stuff
                 ball=new Ball(dim.width,dim.height,0,0,10,5);
                 bat=new Bat(dim.width,dim.height,dim.width/2-50,dim.height-20,100,20,5);
+                pc = new PC(dim.width,dim.height,dim.width/2-50,0,100,20,5);
                 isLeft=false;
                 isRight=false;           
 	}
@@ -39,9 +41,9 @@ public class Game extends Canvas implements KeyListener{
 	 * Start the game
 	 */
 	public void Start() {
-
 		while (true) {
                         ball.update();
+                        pc.update();
                         if(isLeft)bat.setLeft();
                         if(isRight)bat.setRight();
                         bat.update();
@@ -62,6 +64,7 @@ public class Game extends Canvas implements KeyListener{
         public void detectCollision(){
             Rectangle rectBall=new Rectangle(ball.getX(),ball.getY(),ball.getSize(),ball.getSize());
             Rectangle rectBat=new Rectangle(bat.getX(),bat.getY(),bat.getW(),bat.getH());
+            Rectangle rectPC=new Rectangle(pc.getX(),pc.getY(),pc.getW(),pc.getH());
             if (ball.getY()==bat.getY()){
                 if(rectBall.intersects(rectBat)){
                     ball.reverse();
@@ -74,6 +77,10 @@ public class Game extends Canvas implements KeyListener{
                     } else{
                         System.exit(0);
                     }
+                }
+            } else if (ball.getY() == pc.getY()){
+                if(rectBall.intersects(rectPC)){
+                    ball.reverse();
                 }
             }
         }
@@ -91,9 +98,11 @@ public class Game extends Canvas implements KeyListener{
                 b.setColor(Color.WHITE);
                 b.fillOval(ball.getX(), ball.getY(),ball.getSize(),ball.getSize());
                 
-                b.setColor(Color.RED);
-                
+                b.setColor(Color.RED);                
                 b.fillRect(bat.getX(), bat.getY(), bat.getW(), bat.getH());
+                
+                b.setColor(Color.YELLOW);                
+                b.fillRect(pc.getX(), pc.getY(), pc.getW(), pc.getH());
         }
 
 	/**
