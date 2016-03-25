@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import javax.swing.JOptionPane;
+
 
 public class Game extends Canvas implements KeyListener{
 
@@ -30,9 +32,7 @@ public class Game extends Canvas implements KeyListener{
                 ball=new Ball(dim.width,dim.height,0,0,10,5);
                 bat=new Bat(dim.width,dim.height,dim.width/2-50,dim.height-20,100,20,5);
                 isLeft=false;
-                isRight=false;
-                
-                
+                isRight=false;           
 	}
 
 	/**
@@ -62,8 +62,19 @@ public class Game extends Canvas implements KeyListener{
         public void detectCollision(){
             Rectangle rectBall=new Rectangle(ball.getX(),ball.getY(),ball.getSize(),ball.getSize());
             Rectangle rectBat=new Rectangle(bat.getX(),bat.getY(),bat.getW(),bat.getH());
-            if(rectBall.intersects(rectBat)){
-                ball.reverse();
+            if (ball.getY()==bat.getY()){
+                if(rectBall.intersects(rectBat)){
+                    ball.reverse();
+                } else{
+                    int reply = JOptionPane.showConfirmDialog(null, "You lose! Do you want to Replay?", "Replay?", JOptionPane.YES_NO_OPTION);
+                    // To replay, y-cordinate of the ball is set to the top (i.e. 0) and start the game again
+                    if (reply == JOptionPane.YES_OPTION) { 
+                            ball.setY(0);  
+                            Start();
+                    } else{
+                        System.exit(0);
+                    }
+                }
             }
         }
 	/**
@@ -121,5 +132,4 @@ public class Game extends Canvas implements KeyListener{
             isRight=false;   
         }
     }
-
 }
