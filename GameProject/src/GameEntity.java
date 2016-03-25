@@ -1,6 +1,6 @@
 public abstract class GameEntity {
     protected int x;
-    protected int y;
+    protected int y; 
     protected int w;
     protected int h;
     protected int speed;
@@ -10,8 +10,8 @@ public abstract class GameEntity {
     public GameEntity(int gameWidth, int gameHeight,int x, int y, int w,int h,int speed) {
         this.x = x;
         this.y = y;
-        this.w=w;
-        this.h=h;
+        this.w = w;
+        this.h = h;
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
         this.speed=speed;       
@@ -33,5 +33,8 @@ public abstract class GameEntity {
     public int getH() {
         return h;
     }
- 
+    
+    public void setY(int i){
+        this.y = i;
+    }
 }
