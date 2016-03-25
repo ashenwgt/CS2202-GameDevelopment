@@ -33,7 +33,7 @@ public class GameLauncher {
 		// Stop resizing
 		frame.setResizable(false);
 		// Set title
-		frame.setTitle("Bricks 01");
+		frame.setTitle("Java Game");
 		// Pack the content
 		frame.pack();
 		// Center the frame

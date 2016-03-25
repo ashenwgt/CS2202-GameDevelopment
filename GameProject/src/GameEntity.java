@@ -18,6 +18,7 @@ public abstract class GameEntity {
     }
     
     public abstract void update();
+    
     public int getX() {
         return x;
     }

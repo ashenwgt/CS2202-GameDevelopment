@@ -11,19 +11,18 @@ public class Bat extends GameEntity {
     @Override
     public void update(){
         //check the edges
-       x=x+dx;
+        x=x+dx;
         if(x<=0){
            x=0;
-       }
-       if(x>gameWidth-w){
+        }
+        if(x>gameWidth-w){
            x=gameWidth-w;
-       }
-       dx=0;
+        }
+        dx=0;
     }
    
     public void setLeft(){
-        this.dx=-this.speed;
-       
+        this.dx=-this.speed;       
     }
     
     public void setRight(){
