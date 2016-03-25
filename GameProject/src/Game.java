@@ -26,8 +26,7 @@ public class Game extends Canvas implements KeyListener{
 	 * Create the game using the width and the height specified
 	 */
 	public Game(Dimension dim) {
-		buffer = new BufferedImage(dim.width, dim.height,
-				BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
 		this.setIgnoreRepaint(true); // Ignore repainting as we are doing all
 		// the drawing stuff
                 ball=new Ball(dim.width,dim.height,0,0,10,5);
@@ -90,8 +89,7 @@ public class Game extends Canvas implements KeyListener{
 	public void drawBuffer() {
 		Graphics2D b = buffer.createGraphics();
 		
-		// Random color background
-		//Color c = new Color(new Random().nextInt());
+		// background color
 		b.setColor(Color.BLACK);
 		b.fillRect(0, 0, buffer.getWidth(), buffer.getHeight());
                 
@@ -103,6 +101,10 @@ public class Game extends Canvas implements KeyListener{
                 
                 b.setColor(Color.YELLOW);                
                 b.fillRect(pc.getX(), pc.getY(), pc.getW(), pc.getH());
+                
+                // tennis net color
+                b.setColor(Color.BLUE);                
+                b.fillRect(0, buffer.getHeight()/2, buffer.getWidth(), 1);
         }
 
 	/**
