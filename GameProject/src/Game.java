@@ -105,6 +105,11 @@ public class Game extends Canvas implements KeyListener{
                 // tennis net color
                 b.setColor(Color.BLUE);                
                 b.fillRect(0, buffer.getHeight()/2, buffer.getWidth(), 1);
+                
+                // label 2 sides
+                b.setColor(Color.GREEN);
+                b.drawString("PC", 10, buffer.getHeight()/2-10);
+                b.drawString("User", 10, buffer.getHeight()/2+20);
         }
 
 	/**
